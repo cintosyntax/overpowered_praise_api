@@ -27,13 +27,12 @@ func main() {
 	if port == "" {
 		port = defaultPort
 	}
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+
+	http.HandleFunc("/me", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 
-		name := r.URL.Query().Get("name")
-		if name == "" {
-			name = r.URL.Query().Get("text")
-		}
+		name := r.URL.Query().Get("user_name")
+		name = strings.Title(name)
 
 		praise := icndb.GetRandomJoke(name, "")
 		apiResponse := &slackResponseBody{
@@ -44,11 +43,13 @@ func main() {
 		json.NewEncoder(w).Encode(apiResponse)
 	})
 
-	http.HandleFunc("/me", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 
-		name := r.URL.Query().Get("user_name")
-		name = strings.Title(name)
+		name := r.URL.Query().Get("name")
+		if name == "" {
+			name = r.URL.Query().Get("text")
+		}
 
 		praise := icndb.GetRandomJoke(name, "")
 		apiResponse := &slackResponseBody{
