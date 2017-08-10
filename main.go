@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/cintosyntax/overpowered_praise_api/icndb"
 )
@@ -13,6 +14,7 @@ import (
 const (
 	serviceName         = "Overpowered Praise API"
 	defaultResponseType = "in_channel"
+	defaultPort         = "9000"
 )
 
 type slackResponseBody struct {
@@ -22,6 +24,9 @@ type slackResponseBody struct {
 
 func main() {
 	port := os.Getenv("PORT")
+	if port == "" {
+		port = defaultPort
+	}
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 
@@ -29,6 +34,21 @@ func main() {
 		if name == "" {
 			name = r.URL.Query().Get("text")
 		}
+
+		praise := icndb.GetRandomJoke(name, "")
+		apiResponse := &slackResponseBody{
+			ResponseType: defaultResponseType,
+			Text:         praise,
+		}
+
+		json.NewEncoder(w).Encode(apiResponse)
+	})
+
+	http.HandleFunc("/me", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+
+		name := r.URL.Query().Get("user_name")
+		name = strings.Title(name)
 
 		praise := icndb.GetRandomJoke(name, "")
 		apiResponse := &slackResponseBody{
