@@ -26,7 +26,7 @@ const (
 // and returns the resultant string w/o escaped characters.
 func GetRandomJoke(firstName string, lastName string) string {
 	// Defer replacing 'Chuck Norris' to after the call has been made.
-	url := baseURL + "/jokes/random?escape=javascript"
+	url := baseURL + "/jokes/random?escape=javascript&exclude=%5Bexplicit%5D"
 
 	resp, _ := http.Get(url)
 	body, _ := ioutil.ReadAll(resp.Body)
