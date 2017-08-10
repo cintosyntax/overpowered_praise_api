@@ -26,6 +26,9 @@ func main() {
 		w.Header().Set("Content-Type", "application/json")
 
 		name := r.URL.Query().Get("name")
+		if name == "" {
+			name = r.URL.Query().Get("text")
+		}
 
 		praise := icndb.GetRandomJoke(name, "")
 		apiResponse := &slackResponseBody{
