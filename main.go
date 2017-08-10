@@ -34,6 +34,6 @@ func main() {
 		json.NewEncoder(w).Encode(apiResponse)
 	})
 
-	fmt.Println(serviceName + " serving on port :" + defaultPort)
+	fmt.Println(serviceName + " serving on port :" + port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
