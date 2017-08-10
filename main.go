@@ -23,6 +23,8 @@ type slackResponseBody struct {
 func main() {
 	port := os.Getenv("PORT")
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+
 		name := r.URL.Query().Get("name")
 
 		praise := icndb.GetRandomJoke(name, "")
