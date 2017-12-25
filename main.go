@@ -83,6 +83,6 @@ func main() {
 // Note: Some jokes don't make sense even if you do this, for example:
 // How much wood would a woodchuck chuck if a woodchuck could Chuck Norris? All of it.
 func ReplaceCN(joke string, name string) string {
-	joke = strings.Replace(joke, "Chuck Norris ", name, -1)
+	joke = strings.Replace(joke, "Chuck Norris ", name+" ", -1)
 	return joke
 }
