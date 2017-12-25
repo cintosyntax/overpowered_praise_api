@@ -1,3 +1,10 @@
   language: go
   go:
     - 1.6
+
+  before_install:
+    - echo Yooo
+    - echo Cheese
+  
+  script:
+    - go test ./...
