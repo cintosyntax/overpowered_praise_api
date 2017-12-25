@@ -1,8 +1,15 @@
+sudo: required
 language: go
 go:
 - 1.6
+
+services:
+  - docker
+
 script:
 - go test ./...
+- make
+
 deploy:
   provider: heroku
   app: overpoweredpraiseapi
