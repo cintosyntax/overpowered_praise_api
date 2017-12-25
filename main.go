@@ -34,7 +34,19 @@ func main() {
 		name := r.URL.Query().Get("user_name")
 		name = strings.Title(name)
 
-		praise := icndb.GetRandomJoke(name, "")
+		if name == "" {
+			// Return 400 if no name was given this endpoint expects a name.
+			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte("400 - Expected name to be given"))
+			return
+		}
+
+		cnJoke := icndb.GetRandomJoke()
+		praise := ReplaceCN(cnJoke, name)
+
+		// Convert Chuck Norris Joke to praise by replacing all instnaces of his
+		// name if it is given.
+
 		apiResponse := &slackResponseBody{
 			ResponseType: defaultResponseType,
 			Text:         praise,
@@ -51,7 +63,9 @@ func main() {
 			name = r.URL.Query().Get("text")
 		}
 
-		praise := icndb.GetRandomJoke(name, "")
+		cnJoke := icndb.GetRandomJoke()
+		praise := ReplaceCN(cnJoke, name)
+
 		apiResponse := &slackResponseBody{
 			ResponseType: defaultResponseType,
 			Text:         praise,
@@ -62,4 +76,13 @@ func main() {
 
 	fmt.Println(serviceName + " serving on port :" + port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
+}
+
+// ReplaceCN takes a string with the name Chuck Norris
+// and replace all instances with the name provided.
+// Note: Some jokes don't make sense even if you do this, for example:
+// How much wood would a woodchuck chuck if a woodchuck could Chuck Norris? All of it.
+func ReplaceCN(joke string, name string) string {
+	joke = strings.Replace(joke, "Chuck Norris ", name, -1)
+	return joke
 }
