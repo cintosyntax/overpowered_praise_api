@@ -1,10 +1,12 @@
-  language: go
-  go:
-    - 1.6
-
-  before_install:
-    - echo Yooo
-    - echo Cheese
-  
-  script:
-    - go test ./...
+language: go
+go:
+- 1.6
+script:
+- go test ./...
+deploy:
+  provider: heroku
+  app: overpoweredpraiseapi
+  api_key:
+    secure: XkFyQH8c9Dw75RvpQAeb+xRbgqqb0nvxH5hK/FRD3xifdEg1lyPQjO7SeL9kwjVU+z7qFHX+7AbWlART0Dy9ZG7TgTx42Ksi+/b7MTE4/nBw+ei4Y90AlYjWwcWOvDvE73x6l7tcys5lv7RfUzaf9VuNYOj2bHe/q19mwRbRVDJA58ucj+WCqjvEc/hzC6rXV2mIoxbWFfmppge+3QhjL22USpO829F5re0zqM3Y+Cqf7hN2M6mkwGr+Ck6EHiaWxYZLjWwJu7YsodsLESP7hGng6NaM/jL2CxKAkLTy4TXp1Iro3mVGfZs6InSHvo6lPGLqyKdsS7aBe7goIlaOODD8TEGTCJDwD9dJRjfYL3n94IgeZgLDFzkbJD8FfcY4EQwMRPOOS2C9HEyUP5nqopTRow9aKI1CzdUxacl3qQhZVY4rzQgk8Jp+CoW0qtf3Yfc43hxXGbliFNc7JA9RmcgfFJvZxvty9fWLeYp9vHq/zzMa2vrA64dCmep0BAnLNOcK4KPO8zFyMDtaeEwyd7QU8uRQArKCnhZ5X46GeC1cRMi4IHFEZ6JaGBi0meKhWY9dOlLxbuRkEHEWTg87X0RTGPTwV4Uzv4tUJkDY89lccQP/gAWydFhcqD4c3/qmKMxGLlFY/Z5kob/UI9cGGPHHyo1Nvx+05uaky06GssE=
+  on:
+    branch: master
