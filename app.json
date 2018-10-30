@@ -1,7 +1,7 @@
 {
   "name": "Overpowered Praise API",
   "image": "heroku/go",
-  "mount_dir": "src/github.com/cintosyntax/overpowered_praise_api",
-  "website": "http://github.com/cintosyntax/overpowered_praise_api",
-  "repository": "http://github.com/heroku/cintosyntax/overpowered_praise_api"
+  "mount_dir": "src/github.com/edwinthinks/overpowered_praise_api",
+  "website": "http://github.com/edwinthinks/overpowered_praise_api",
+  "repository": "http://github.com/heroku/edwinthinks/overpowered_praise_api"
 }

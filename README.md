@@ -9,7 +9,7 @@ A ridiculous API that serves insane compliments. This utilizes the Internet Chuc
 I have deployed this on Heroku using Docker here(https://overpoweredpraiseapi.herokuapp.com). It just responds back with a JSON that accomodates the format expected by slack.
 
 I define a few slash commands on slack and then presto!
-![alt text](https://raw.githubusercontent.com/cintosyntax/overpowered_praise_api/master/slack_example.png)
+![alt text](https://raw.githubusercontent.com/edwinthinks/overpowered_praise_api/master/slack_example.png)
 
 
 ## Wish list
