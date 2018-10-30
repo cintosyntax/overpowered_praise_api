@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/cintosyntax/overpowered_praise_api/icndb"
+	"github.com/edwinthinks/overpowered_praise_api/icndb"
 )
 
 const (
